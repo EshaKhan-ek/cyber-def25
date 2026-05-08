@@ -1,1 +1,1 @@
-trigger pipelinee
+trigger pipeline
