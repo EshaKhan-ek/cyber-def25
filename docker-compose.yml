@@ -1,0 +1,25 @@
+version: '3.8'
+ 
+services:
+  malware-detector:
+    # The image built in Part (a) / pushed in Part (c)
+    image: ${DOCKER_HUB_USER}/cyber-def25:latest
+ 
+    # Container name for easy reference
+    container_name: cyber-def25-inference
+ 
+    # Volume mounts
+    volumes:
+      # Mount host network log folder → container input directory
+      - ./network_logs:/input/logs:ro
+ 
+      # Mount host output folder → container output directory
+      # alerts.csv will appear here on the host after the run
+      - ./output:/output
+ 
+    # Environment variables (optional overrides)
+    environment:
+      - PYTHONUNBUFFERED=1
+ 
+    # Restart policy: do not restart automatically (one-shot job)
+    restart: 'no'
